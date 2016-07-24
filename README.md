@@ -1,6 +1,6 @@
-# spider-web
+# app-coledit
 
-> the web of the api calls
+> front-end for coledit
 
 ## About
 
