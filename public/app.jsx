@@ -65,7 +65,7 @@ const UserList = React.createClass({
 
       <ul className="flex flex-column flex-1 list-unstyled user-list">
         {users.map(user =>
-          <li>
+          <li key={user._id}>
             <a className="block relative" href="#">
               <img src={user.avatar || PLACEHOLDER} className="avatar" />
               <span className="absolute username">{user.email}</span>
@@ -87,7 +87,7 @@ const MessageList = React.createClass({
   renderMessage(message) {
     const sender = message.sentBy || dummyUser;
 
-    return <div className="message flex flex-row">
+    return <div key={message._id} className="message flex flex-row">
       <img src={sender.avatar || PLACEHOLDER} alt={sender.email} className="avatar" />
       <div className="message-wrapper">
         <p className="message-header">
@@ -119,9 +119,9 @@ const ChatApp = React.createClass({
   },
 
   componentDidUpdate: function() {
-    // Whenever something happened, scroll to the bottom of the chat window
-    const node = this.getDOMNode().querySelector('.chat');
-    node.scrollTop = node.scrollHeight - node.clientHeight;
+    // // Whenever something happened, scroll to the bottom of the chat window
+    // const node = this.getDOMNode().querySelector('.chat');
+    // node.scrollTop = node.scrollHeight - node.clientHeight;
   },
 
   componentDidMount() {
@@ -135,11 +135,11 @@ const ChatApp = React.createClass({
       users: this.state.users.concat(user)
     }));
 
-    // Find the last 10 messages
+    // Find the previous messages
     messageService.find({
       query: {
         $sort: { createdAt: -1 },
-        $limit: this.props.limit || 10
+        $limit: this.props.limit || 1000
       }
     }).then(page => this.setState({ messages: page.data.reverse() }));
     // Listen to newly created messages
@@ -169,7 +169,7 @@ app.authenticate().then(() => {
     </header>
 
     <ChatApp />
-  </div>, document.body);
+  </div>, document.getElementById('workspace'));
 }).catch(error => {
   if(error.code === 401) {
     window.location.href = '/login.html'

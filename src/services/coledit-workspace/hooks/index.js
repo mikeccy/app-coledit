@@ -18,11 +18,10 @@ exports.before = {
     auth.verifyToken(),
     auth.populateUser(),
     auth.restrictToAuthenticated(),
-    sanity()
   ],
   find: [],
   get: [],
-  create: [],
+  create: [sanity()],
   update: [hooks.remove('sentBy'), restrictEdits()],
   patch: [hooks.remove('sentBy'), restrictEdits()],
   remove: [restrictEdits()]
