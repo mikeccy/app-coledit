@@ -110,7 +110,7 @@ const MessageList = React.createClass({
   }
 });
 
-const ChatApp = React.createClass({
+const Workspace = React.createClass({
   getInitialState() {
     return {
       users: [],
@@ -168,7 +168,7 @@ app.authenticate().then(() => {
       </div>
     </header>
 
-    <ChatApp />
+    <Workspace />
   </div>, document.getElementById('workspace'));
 }).catch(error => {
   if(error.code === 401) {
