@@ -1,4 +1,3 @@
-
 // Establish a Socket.io connection
 const socket = io();
 // Initialize our Feathers client application through Socket.io
@@ -11,4 +10,8 @@ const App = feathers()
     storage: window.localStorage
   }));
 
-export default App;
+export const app = App;
+export const appLogin = App.authenticate();
+export const appLogout = App.logout();
+export const userService = App.service('users');
+export const messageService = App.service('coledit-workspaces');

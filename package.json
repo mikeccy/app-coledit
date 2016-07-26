@@ -37,6 +37,8 @@
     "passport": "^0.3.2",
     "react": "^15.2.1",
     "react-pure-render": "^1.0.2",
+    "react-redux": "^4.4.5",
+    "redux": "^3.5.2",
     "serve-favicon": "^2.3.0",
     "winston": "^2.2.0"
   },
