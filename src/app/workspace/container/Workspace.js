@@ -6,15 +6,9 @@ import { userLogin } from '../action/User';
 import { messageAdded } from '../action/Message';
 import UserContainer from './UserContainer';
 import MessageContainer from './MessageContainer';
-// import ComposeMessageContainer from '../container/ComposeMessageContainer';
+import ComposeMessageContainer from './ComposeMessageContainer';
 
 class Workspace extends Component {
-
-  componentDidUpdate() {
-    // // Whenever something happened, scroll to the bottom of the chat window
-    // const node = this.getDOMNode().querySelector('.chat');
-    // node.scrollTop = node.scrollHeight - node.clientHeight;
-  }
 
   componentDidMount() {
     const {
@@ -54,7 +48,7 @@ class Workspace extends Component {
           <UserContainer />
           <div className="flex flex-column col col-9">
             <MessageContainer />
-            {/*<ComposeMessageContainer />*/}
+            <ComposeMessageContainer />
           </div>
         </div>
       </div>
