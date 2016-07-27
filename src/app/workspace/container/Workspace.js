@@ -1,10 +1,11 @@
 import Component from 'react-pure-render/component';
 import React from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { userService, messageService } from '../App';
-import { userLogin } from '../action/User'
-import UserContainer from '../container/UserContainer';
-// import MessageContainer from '../container/MessageContainer';
+import { userLogin } from '../action/User';
+import { messageAdded } from '../action/Message';
+import UserContainer from './UserContainer';
+import MessageContainer from './MessageContainer';
 // import ComposeMessageContainer from '../container/ComposeMessageContainer';
 
 class Workspace extends Component {
@@ -20,26 +21,24 @@ class Workspace extends Component {
       dispatch
     } = this.props;
 
-    // // Find all users initially
     userService.find().then(
       (page) => page.data.map((user) => dispatch(userLogin(user)))
     );
-    // // Listen to new users so we can show them in real-time
     userService.on('created',
       (user) => dispatch(userLogin(user))
     );
 
-    // // Find the previous messages
-    // messageService.find({
-    //   query: {
-    //     $sort: { createdAt: -1 },
-    //     $limit: this.props.limit || 1000
-    //   }
-    // }).then(page => this.setState({ messages: page.data.reverse() }));
-    // // Listen to newly created messages
-    // messageService.on('created', message => this.setState({
-    //   messages: this.state.messages.concat(message)
-    // }));
+    messageService.find({
+      query: {
+        $sort: { createdAt: -1 },
+        $limit: this.props.limit || 1000
+      }
+    }).then(
+      (page) => page.data.map((message) => dispatch(messageAdded(message)))
+    );
+    messageService.on('created',
+      (message) => dispatch(messageAdded(message))
+    );
   }
 
   render() {
@@ -53,10 +52,10 @@ class Workspace extends Component {
         </header>
         <div className="flex flex-row flex-1 clear">
           <UserContainer />
-          {/*<div className="flex flex-column col col-9">
+          <div className="flex flex-column col col-9">
             <MessageContainer />
-            <ComposeMessageContainer />
-          </div>*/}
+            {/*<ComposeMessageContainer />*/}
+          </div>
         </div>
       </div>
     );
