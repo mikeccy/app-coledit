@@ -15,7 +15,7 @@ class UserList extends Component {
     return <aside className="sidebar col col-3 flex flex-column flex-space-between">
       <header className="flex flex-row flex-center">
         <h4 className="font-300 text-center">
-          <span className="font-600 online-count">{users.length}</span> users
+          <span className="font-600 online-count">{users.length}</span> 用户
         </h4>
       </header>
 
