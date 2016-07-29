@@ -5,6 +5,8 @@ export class Message extends Base({
   userId: undefined,
   updatedAt: undefined,
   isEditing: false,
+  startTs: undefined,
+  endTs: undefined,
 }) {
   isEditing() {
     return this.get('isEditing');
@@ -35,6 +37,27 @@ export const editingMessageText = (text) => {
   return {
     type: 'EDITING_MESSAGE_TEXT',
     text,
+  }
+}
+
+export const editingMessageStartTs = (startTs) => {
+  return {
+    type: 'EDITING_MESSAGE_START_TS',
+    startTs,
+  }
+}
+
+export const editingMessageEndTs = (endTs) => {
+  return {
+    type: 'EDITING_MESSAGE_END_TS',
+    endTs,
+  }
+}
+
+export const editingMessageAppendFile = (file) => {
+  return {
+    type: 'EDITING_MESSAGE_APPEND_FILE',
+    file,
   }
 }
 

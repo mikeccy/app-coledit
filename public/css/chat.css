@@ -15,6 +15,10 @@ html, body {
   flex: 4;
 }
 
+.flex-99 {
+  flex: 99;
+}
+
 .flex-cross-center {
   align-items: center;
 }
@@ -52,6 +56,10 @@ a:focus {
 .button-primary:focus {
   background: #27C895;
   color: #ffffff;
+}
+
+.button-primary:hover:disabled{
+  cursor: not-allowed;
 }
 
 /* ======================================= */

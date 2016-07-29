@@ -1,16 +1,42 @@
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { messageService } from '../App';
-import ComposeMessage from '../component/ComposeMessage'
+import ComposeMessage from '../component/ComposeMessage';
 import {
   Message,
   editingMessageStart,
   editingMessageText,
+  editingMessageStartTs,
+  editingMessageEndTs,
   editingMessageSubmit,
   editingMessageEnd
-} from '../action/Message'
+} from '../action/Message';
+import { playerEditSeek } from '../action/Player';
+
+const isValidTs = (val) => !isNaN(val) && isFinite(val);
+
+const validation = (editingMessage) => {
+  const startTs = parseFloat(editingMessage.get('startTs'));
+  const endTs = parseFloat(editingMessage.get('endTs'));
+  if (!isValidTs(startTs)) {
+    alert('起始秒❌');
+    return false;
+  }
+
+  if (!isValidTs(endTs)) {
+    alert('结束秒❌');
+    return false;
+  }
+
+  if (startTs > endTs) {
+    alert(`起始秒(${startTs}) > 结束秒(${endTs})`);
+    return false;
+  }
+  return true;
+}
 
 const inputProps = (state) => {
   return {
+    playing: state.player.get('playing'),
     editingMessage: state.editingMessage,
   }
 }
@@ -22,6 +48,14 @@ const outputProps = (dispatch) => {
     },
     _messageEditText: (text) => {
       dispatch(editingMessageText(text));
+    },
+    _messageEditStartTs: (ts) => {
+      dispatch(editingMessageStartTs(ts));
+      dispatch(playerEditSeek(ts));
+    },
+    _messageEditEndTs: (ts) => {
+      dispatch(editingMessageEndTs(ts));
+      dispatch(playerEditSeek(ts));
     },
     _messageEditSubmit: () => {
       dispatch(editingMessageSubmit());
@@ -37,8 +71,20 @@ const mixedProps = (inputProps, outputProps, ownProps) => {
     onMessageEditText: (event) => {
       outputProps._messageEditText(event.target.value);
     },
+    onMessageEditStartTs: (event) => {
+      outputProps._messageEditStartTs(event.target.value);
+    },
+    onMessageEditEndTs: (event) => {
+      outputProps._messageEditEndTs(event.target.value);
+    },
     onMessageEditSubmit: (event) => {
       outputProps._messageEditSubmit();
+
+      if (!validation(inputProps.editingMessage)) {
+        return;
+      }
+      console.log(inputProps.editingMessage.toString());
+
 
       if (inputProps.editingMessage.isNew()) {
         messageService.create(inputProps.editingMessage)

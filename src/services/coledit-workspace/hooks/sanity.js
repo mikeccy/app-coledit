@@ -20,13 +20,18 @@ module.exports = function(options) {
       // Do some basic HTML escaping //TODO cmc make sure this is good
       .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 
+    const startTs = parseFloat(hook.data.startTs);
+    const endTs = parseFloat(hook.data.endTs);
+
     // Override the original data
     hook.data = {
       text,
       // Set the user id
       userId: user._id,
       // Add the current time via `getTime`
-      updatedAt: new Date().getTime()
+      updatedAt: new Date().getTime(),
+      startTs,
+      endTs,
     };
   };
 };

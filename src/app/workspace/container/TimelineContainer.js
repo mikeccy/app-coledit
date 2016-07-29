@@ -1,6 +1,6 @@
-import { connect } from 'react-redux'
-import { playerEditSeek } from '../action/Player'
-import Timeline from '../component/Timeline'
+import { connect } from 'react-redux';
+import { playerEditSeek } from '../action/Player';
+import Timeline from '../component/Timeline';
 
 const inputProps = (state) => {
   return {

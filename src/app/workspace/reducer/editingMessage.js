@@ -9,6 +9,10 @@ const editingMessage = (state = initial, action) => {
       return action.message.set('isEditing', true);
     case 'EDITING_MESSAGE_TEXT':
       return state.set('text', action.text);
+    case 'EDITING_MESSAGE_START_TS':
+      return state.set('startTs', action.startTs);
+    case 'EDITING_MESSAGE_END_TS':
+      return state.set('endTs', action.endTs);
     case 'EDITING_MESSAGE_SUBMIT':
       return state.set('isEditing', false);
     case 'EDITING_MESSAGE_SUBMIT_FAILURE':
