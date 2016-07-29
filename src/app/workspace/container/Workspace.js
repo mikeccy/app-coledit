@@ -5,6 +5,7 @@ import { userService, messageService } from '../App';
 import { userLogin } from '../action/User';
 import { messageAdded } from '../action/Message';
 import UserContainer from './UserContainer';
+import PlayerContainer from './PlayerContainer';
 import MessageContainer from './MessageContainer';
 import ComposeMessageContainer from './ComposeMessageContainer';
 
@@ -47,6 +48,7 @@ class Workspace extends Component {
         <div className="flex flex-row flex-1 clear">
           <UserContainer />
           <div className="flex flex-column col col-9">
+            <PlayerContainer />
             <MessageContainer />
             <ComposeMessageContainer />
           </div>

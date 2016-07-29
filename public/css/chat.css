@@ -11,6 +11,10 @@ html, body {
   flex: 2;
 }
 
+.flex-4 {
+  flex: 4;
+}
+
 .row {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -240,4 +244,22 @@ main.chat .message p.message-header span.sent-date {
 
 #app form button {
   margin-left: 10px;
+}
+
+/* Main Player */
+
+main.player {
+  border-radius: 2px;
+  border: 1px solid #f1f1f1;
+}
+
+/* Main Canvas */
+
+main.canvas {
+}
+
+/* Main Control */
+
+main.control {
+  background: #f8f8f8;
 }

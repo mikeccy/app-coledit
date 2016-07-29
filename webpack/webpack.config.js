@@ -1,3 +1,11 @@
+const path = require('path');
+
+const constants = Object.freeze({
+  ROOT: '../',
+  SRC_DIR: '../',
+  NODE_MODULES_DIR: '../node_modules',
+});
+
 module.exports = {
   entry: {
     workspace: "../src/app/workspace/Entry.js",
@@ -25,7 +33,12 @@ module.exports = {
       }
     ],
     resolve: {
-      extensions: ['', '.js', '.jsx']
-    }
+      extensions: ['', '.js', '.jsx'],
+      modulesDirectories: [constants.SRC_DIR, constants.NODE_MODULES_DIR],
+      root: constants.ROOT,
+      alias: {
+        react$: require.resolve(path.join(constants.NODE_MODULES_DIR, 'react'))
+      }
+    },
   }
 };
