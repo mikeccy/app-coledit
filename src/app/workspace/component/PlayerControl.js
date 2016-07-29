@@ -1,6 +1,7 @@
 import Component from 'react-pure-render/component';
 import React from 'react';
 import TimelineContainer from '../container/TimelineContainer';
+import PlaybackContainer from '../container/PlaybackContainer';
 
 class PlayerControl extends Component {
 
@@ -9,8 +10,9 @@ class PlayerControl extends Component {
   }
 
   render() {
-    return <main className="control flex flex-column flex-1 clear">
+    return <main className="control flex flex-column flex-1 clear flex-cross-center">
       <TimelineContainer />
+      <PlaybackContainer />
     </main>;
   }
 }

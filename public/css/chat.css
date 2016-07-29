@@ -15,6 +15,10 @@ html, body {
   flex: 4;
 }
 
+.flex-cross-center {
+  align-items: center;
+}
+
 .row {
   padding-top: 10px;
   padding-bottom: 10px;

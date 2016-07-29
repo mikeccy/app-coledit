@@ -19,9 +19,13 @@ class Audio extends Component {
     this.tick = this.tick.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {    
-    if (nextProps.seekPos && nextProps.seekPos !== this.props.seekPos) {
-      this.refs.audio.seek(nextProps.seekPos);
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.userSeekPos !== undefined && nextProps.userSeekPos !== this.props.userSeekPos) {
+      this.refs.audio.seek(nextProps.userSeekPos);
+      if (this.props.onAudioSeekEdited) {
+        this.props.onAudioSeekEdited();
+      }
+      this.onAudioPlayUpdate();
     }
   }
 

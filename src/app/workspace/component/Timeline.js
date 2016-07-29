@@ -107,7 +107,7 @@ class Timeline extends Component {
 
   render() {
     return (
-      <div onClick={this._onClickSeekUpdate}>
+      <div style={{ width: '100%', }} onClick={this._onClickSeekUpdate}>
         <div
           ref="timebar"
           style={{

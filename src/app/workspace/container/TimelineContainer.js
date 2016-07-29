@@ -11,8 +11,8 @@ const inputProps = (state) => {
 
 const outputProps = (dispatch) => {
   return {
-    onSeekPos: (seekPos) => {
-      dispatch(playerEditSeek(seekPos));
+    onSeekPos: (userSeekPos) => {
+      dispatch(playerEditSeek(userSeekPos));
     },
   }
 }

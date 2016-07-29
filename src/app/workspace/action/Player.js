@@ -4,16 +4,29 @@ export const playerStartPlaying = () => {
   }
 }
 
-export const playerStopPlaying = () => {
+export const playerPausePlaying = () => {
   return {
-    type: 'PLAYER_STOP_PLAYING',
+    type: 'PLAYER_PAUSE_PLAYING',
   }
 }
 
-export const playerEditSeek = (seekPos) => {
+export const playerStopPlaying = (userSeekPos) => {
+  return {
+    type: 'PLAYER_STOP_PLAYING',
+    userSeekPos,
+  }
+}
+
+export const playerEditSeek = (userSeekPos) => {
   return {
     type: 'PLAYER_EDIT_SEEK',
-    seekPos,
+    userSeekPos,
+  }
+}
+
+export const playerEditedSeek = () => {
+  return {
+    type: 'PLAYER_EDITED_SEEK',
   }
 }
 
