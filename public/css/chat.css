@@ -62,6 +62,10 @@ a:focus {
   cursor: not-allowed;
 }
 
+input:hover:disabled{
+  cursor: not-allowed;
+}
+
 /* ======================================= */
 /* Home Page */
 /* ======================================= */
