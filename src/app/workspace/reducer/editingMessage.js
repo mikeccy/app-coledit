@@ -13,6 +13,9 @@ const editingMessage = (state = initial, action) => {
       return state.set('startTs', action.startTs);
     case 'EDITING_MESSAGE_END_TS':
       return state.set('endTs', action.endTs);
+    case 'EDITING_MESSAGE_APPEND_FILE':
+      const files = state.get('files');
+      return state.set('files', files.push(action.file._id));
     case 'EDITING_MESSAGE_SUBMIT':
       return state.set('isEditing', false);
     case 'EDITING_MESSAGE_SUBMIT_FAILURE':

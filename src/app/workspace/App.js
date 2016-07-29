@@ -15,3 +15,4 @@ export const appLogin = App.authenticate();
 export const appLogout = App.logout();
 export const userService = App.service('users');
 export const messageService = App.service('coledit-workspaces');
+export const fileService = App.service('coleditfiles');

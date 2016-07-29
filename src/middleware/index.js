@@ -15,6 +15,16 @@ module.exports = function() {
   const app = this;
 
   app.post('/signup', signup(app));
+
+  // s3 signing url
+  app.use('/s3', require('react-s3-uploader/s3router')({
+    bucket: 'coledit',
+    region: 'us-west-2',
+    signatureVersion: 'v4',
+    headers: { 'Access-Control-Allow-Origin': '*' },
+    ACL: 'private',
+  }));
+
   app.use(notFound());
   app.use(logger(app));
   app.use(handler());

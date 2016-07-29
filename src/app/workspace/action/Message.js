@@ -1,4 +1,5 @@
 import { Base } from './Base';
+import { List } from 'immutable';
 
 export class Message extends Base({
   text: '',
@@ -7,6 +8,7 @@ export class Message extends Base({
   isEditing: false,
   startTs: undefined,
   endTs: undefined,
+  files: List(),
 }) {
   isEditing() {
     return this.get('isEditing');

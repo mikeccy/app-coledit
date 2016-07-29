@@ -1,5 +1,6 @@
 import Component from 'react-pure-render/component';
 import React from 'react';
+import FileUploaderContainer from '../container/FileUploaderContainer';
 
 class ComposeMessage extends Component {
   render() {
@@ -16,7 +17,7 @@ class ComposeMessage extends Component {
         onSubmit={onMessageEditSubmit}>
       <input type="number" disabled={playing} name="startTs" className="flex flex-1" placeholder="起始秒" value={editingMessage.get('startTs') || ''} onChange={onMessageEditStartTs} />
       <input type="number" disabled={playing} name="endTs" className="flex flex-1" placeholder="结束秒" value={editingMessage.get('endTs') || ''} onChange={onMessageEditEndTs} />
-      <input type="file" disabled={playing} name="file" className="flex flex-1" placeholder="上传背景" />
+      <FileUploaderContainer />
       <input type="text" disabled={playing} name="text" className="flex flex-4" placeholder="评论" value={editingMessage.get('text')} onChange={onMessageEditText} />
       <button className="button-primary" type="submit" disabled={playing}>发送</button>
     </form>;

@@ -1,6 +1,6 @@
-import { connect } from 'react-redux'
-import { messageEditStart } from '../action/Message'
-import MessageList from '../component/MessageList'
+import { connect } from 'react-redux';
+import { messageEditStart } from '../action/Message';
+import MessageList from '../component/MessageList';
 
 const inputProps = (state) => {
   return {
