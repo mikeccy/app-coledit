@@ -13,7 +13,7 @@ class ComposeMessage extends Component {
         onSubmit={onMessageEditSubmit}>
       <input type="text" name="text" className="flex flex-1"
         value={editingMessage.get('text')} onChange={onMessageEditText} />
-      <button className="button-primary" type="submit">Send</button>
+      <button className="button-primary" type="submit">发送</button>
     </form>;
   }
 }

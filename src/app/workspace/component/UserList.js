@@ -31,7 +31,7 @@ class UserList extends Component {
       </ul>
       <footer className="flex flex-row flex-center">
         <a href="#" className="logout button button-primary" onClick={() => onUserLogout(me._id)}>
-          Sign Out
+          登出
         </a>
       </footer>
     </aside>;

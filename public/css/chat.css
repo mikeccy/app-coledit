@@ -267,3 +267,15 @@ main.canvas {
 main.control {
   background: #f8f8f8;
 }
+
+/* Playback Control */
+
+button.playStop {
+}
+
+button.playStart {
+}
+
+button.playPause {
+}
+
