@@ -83,8 +83,6 @@ const mixedProps = (inputProps, outputProps, ownProps) => {
       if (!validation(inputProps.editingMessage)) {
         return;
       }
-      console.log(inputProps.editingMessage.toString());
-
 
       if (inputProps.editingMessage.isNew()) {
         messageService.create(inputProps.editingMessage)

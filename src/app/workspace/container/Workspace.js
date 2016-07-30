@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { userService, messageService } from '../App';
 import { userLogin } from '../action/User';
-import { messageAdded } from '../action/Message';
+import { messageAdded, messageUpdated } from '../action/Message';
 import UserContainer from './UserContainer';
 import PlayerContainer from './PlayerContainer';
 import MessageContainer from './MessageContainer';
@@ -34,6 +34,9 @@ class Workspace extends Component {
     );
     messageService.on('created',
       (message) => dispatch(messageAdded(message))
+    );
+    messageService.on('updated',
+      (message) => dispatch(messageUpdated(message))
     );
   }
 

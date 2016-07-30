@@ -28,6 +28,13 @@ export const messageAdded = (message) => {
   }
 }
 
+export const messageUpdated = (message) => {
+  return {
+    type: 'MESSAGE_UPDATED',
+    message,
+  }
+}
+
 export const editingMessageStart = (message) => {
   return {
     type: 'EDITING_MESSAGE_START',

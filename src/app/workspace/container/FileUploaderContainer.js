@@ -14,8 +14,6 @@ const inputProps = (state) => {
 const outputProps = (dispatch) => {
   return {
     onUploadFinish: (name, url) => {
-      console.log(name);
-      console.log(url);
       fileService.create(new File({
         name,
         url,
