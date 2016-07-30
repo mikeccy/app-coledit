@@ -89,6 +89,12 @@ export const editingMessageEnd = () => {
   }
 }
 
+export const editingMessageModifyEnd = () => {
+  return {
+    type: 'EDITING_MESSAGE_MODIFY_END',
+  }
+}
+
 export const editingMessageDelete = (message) => {
   return {
     type: 'EDITING_MESSAGE_DELETE',

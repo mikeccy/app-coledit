@@ -22,6 +22,12 @@ const editingMessage = (state = initial, action) => {
       return state.set('isEditing', true);
     case 'EDITING_MESSAGE_END':
       return initial;
+    case 'EDITING_MESSAGE_MODIFY_END':
+      if (!state.isNew()) {
+        return initial;
+      } else {
+        return state;
+      }
     default:
       return state
   }

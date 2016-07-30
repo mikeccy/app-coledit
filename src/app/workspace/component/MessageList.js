@@ -2,6 +2,7 @@ import Component from 'react-pure-render/component';
 import React from 'react';
 import { List } from 'immutable';
 import { AutoSizer, VirtualScroll } from 'react-virtualized';
+import KeyHandler from 'react-key-handler';
 
 const needsHighlight = (message, seekPos) => {
   return message.startTs <= seekPos
@@ -22,6 +23,7 @@ class MessageList extends Component {
 
     this._rect = null;
 
+    this._onCancelMod = this._onCancelMod.bind(this);
     this._getScrollToIndex = this._getScrollToIndex.bind(this);
     this._getRowHeight = this._getRowHeight.bind(this);
     this._renderMessage = this._renderMessage.bind(this);
@@ -45,6 +47,13 @@ class MessageList extends Component {
       }
     }
     this.refs.sizer.refs.scroll.forceUpdateGrid();
+  }
+
+  _onCancelMod(event) {
+    event.preventDefault();
+    if (this.props.onCancelMod) {
+      this.props.onCancelMod();
+    }
   }
 
   _getScrollToIndex(seekPos) {
@@ -90,6 +99,7 @@ class MessageList extends Component {
   render() {
     return (
       <main ref="container" style={{ overflow: 'hidden' }} className="chat flex flex-column flex-1">
+        <KeyHandler keyEventName={'keydown'} keyValue="Escape" onKeyHandle={this._onCancelMod} />
         <AutoSizer ref="sizer">
           {({ height, width }) => (
             <VirtualScroll

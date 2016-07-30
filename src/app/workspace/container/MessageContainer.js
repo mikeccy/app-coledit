@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { Message, editingMessageStart } from '../action/Message';
+import { Message, editingMessageStart, editingMessageModifyEnd } from '../action/Message';
 import MessageList from '../component/MessageList';
 import { app, messageService } from '../App';
 import { playerEditSeek } from '../action/Player';
@@ -29,6 +29,9 @@ const outputProps = (dispatch) => {
       if (validateModification(message)) {
         messageService.remove(message._id, message);
       }
+    },
+    onCancelMod: () => {
+      dispatch(editingMessageModifyEnd());
     },
   }
 }
