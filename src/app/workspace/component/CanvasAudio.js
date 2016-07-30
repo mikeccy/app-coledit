@@ -215,7 +215,7 @@ class CanvasAudio extends Component {
 
   // TODO cmc refactor
   init() {
-    this.actionSeq = new ActionSeq(this);
+    this.actionSeq = new ActionSeq(this, 0.05);
   }
 
   stateHandler(state, key, value) {
@@ -255,15 +255,15 @@ class CanvasAudio extends Component {
   }
 
   doStart(ind) {
-    this.actionSeq.startAction(Math.floor(ind));
+    this.actionSeq.startAction(ind);
   }
 
   doUpdate(ind) {
-    this.actionSeq.updateAction(Math.floor(ind));
+    this.actionSeq.updateAction(ind);
   }
 
   doStop(ind) {
-    this.actionSeq.stopAction(Math.floor(ind));
+    this.actionSeq.stopAction(ind);
   }
 
   // TODO cmc needs a multitrack asset management system

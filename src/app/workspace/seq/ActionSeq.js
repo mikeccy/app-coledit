@@ -3,10 +3,19 @@ import ActionType from './ActionType';
 import ActionState from './ActionState';
 import { List, Set, OrderedMap, Map } from 'immutable';
 
+const fitToInd = (interval, digits, input) => {
+  return (Math.round(input / interval) * interval).toFixed(digits);
+};
+
+const countDecimals = (number) => {
+  if(Math.floor(number.valueOf()) === number.valueOf()) return 0;
+  return number.toString().split(".")[1].length || 0;
+}
+
 class ActionSeq {
 
-  constructor(canvas) {
-    this._seq = List();
+  constructor(canvas, interval) {
+    this._seq = OrderedMap();
     this._map = Map();
 
     // TODO add z-order iterator to the constructor
@@ -15,6 +24,8 @@ class ActionSeq {
 
     // TODO refactor into lifecycle handler
     this._canvas = canvas;
+    this._interval = interval;
+    this._digits = countDecimals(interval);
 
     this.reset = this.reset.bind(this);
     this.has = this.has.bind(this);
@@ -28,11 +39,17 @@ class ActionSeq {
     this.stopAction = this.stopAction.bind(this);
     this._getRangeAction = this._getRangeAction.bind(this);
 
+    this._processInd = this._processInd.bind(this);
+
     this._addActive = this._addActive.bind(this);
     this._removeActive = this._removeActive.bind(this);
     this._removeAllInactive = this._removeAllInactive.bind(this);
     this.hasActive = this.hasActive.bind(this);
     this._updateActive = this._updateActive.bind(this);
+  }
+
+  _processInd(ind) {
+    return fitToInd(this._interval, this._digits, ind);
   }
 
   reset() {
@@ -57,6 +74,8 @@ class ActionSeq {
   }
 
   addIndAction(ind, action) {
+    ind = this._processInd(ind);
+
     this.addAction(action);
 
     let targetSet = this._seq.get(ind, null);
@@ -68,6 +87,8 @@ class ActionSeq {
   }
 
   removeIndAction(ind, action) {
+    ind = this._processInd(ind);
+
     this.removeAction(action);
 
     let targetSet = this._seq.get(ind, null);
@@ -79,6 +100,8 @@ class ActionSeq {
   }
 
   startAction(ind) {
+    ind = this._processInd(ind);
+
     // clear canvas
     this._canvas._canvasClear();
     this.reset();
@@ -100,6 +123,8 @@ class ActionSeq {
   }
 
   updateAction(ind) {
+    ind = this._processInd(ind);
+
     let changed = false;
 
     // try to add
@@ -138,6 +163,8 @@ class ActionSeq {
   }
 
   stopAction(ind) {
+    ind = this._processInd(ind);
+
     // go through active actions and stop types that needs stopping, video
   }
 
