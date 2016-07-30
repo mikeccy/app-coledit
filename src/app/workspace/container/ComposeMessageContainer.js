@@ -90,7 +90,7 @@ const mixedProps = (inputProps, outputProps, ownProps) => {
         messageService.create(inputProps.editingMessage)
           .then(outputProps._messageEditEnd());
       } else {
-        messageService.update(inputProps.editingMessage)
+        messageService.update(inputProps.editingMessage.get('_id'), inputProps.editingMessage)
           .then(outputProps._messageEditEnd());
       }
 

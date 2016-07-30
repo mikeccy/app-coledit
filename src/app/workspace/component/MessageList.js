@@ -71,7 +71,7 @@ class MessageList extends Component {
         <img src={sender.avatar} alt={sender.email} className="avatar flex-1" />
         <div
           className="message-wrapper flex flex-1"
-          onClick={() => onClickEdit(message._id)}
+          onClick={() => onClickEdit(message)}
           style={{
             backgroundColor: highlight ? '#FFB03A' : '',
           }}

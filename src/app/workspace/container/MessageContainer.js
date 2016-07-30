@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { messageEditStart } from '../action/Message';
+import { Message, editingMessageStart } from '../action/Message';
 import MessageList from '../component/MessageList';
 
 const inputProps = (state) => {
@@ -11,8 +11,8 @@ const inputProps = (state) => {
 
 const outputProps = (dispatch) => {
   return {
-    onClickEdit: (messageId) => {
-      dispatch(messageEditStart(messageId));
+    onClickEdit: (message) => {
+      dispatch(editingMessageStart(new Message(message)));
     },
   }
 }

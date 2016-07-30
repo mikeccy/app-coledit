@@ -22,7 +22,7 @@ exports.before = {
   find: [],
   get: [],
   create: [sanity()],
-  update: [hooks.remove('sentBy'), restrictEdits()],
+  update: [hooks.remove('sentBy'), restrictEdits(), sanity()],
   patch: [hooks.remove('sentBy'), restrictEdits()],
   remove: [restrictEdits()]
 };
@@ -32,7 +32,7 @@ exports.after = {
   find: [populateSender],
   get: [populateSender],
   create: [populateSender],
-  update: [],
+  update: [populateSender],
   patch: [],
   remove: []
 };
