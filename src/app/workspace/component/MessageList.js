@@ -43,8 +43,8 @@ class MessageList extends Component {
           scrollToIndex: scrollToIndex,
         });
       }
-      this.refs.sizer.refs.scroll.forceUpdateGrid();
     }
+    this.refs.sizer.refs.scroll.forceUpdateGrid();
   }
 
   _getScrollToIndex(seekPos) {
@@ -54,7 +54,7 @@ class MessageList extends Component {
   }
 
   _getRowHeight({ index }) {
-    return 70;
+    return 65;
   }
 
   _renderMessage({ index, isScrolling }) {
@@ -65,6 +65,7 @@ class MessageList extends Component {
     const message = this.props.messages.get(index);
     const sender = message.sentBy;
     const highlight = needsHighlight(message, this.props.seekPos);
+    const editing = message._id == this.props.editingMessageId;
 
     return (
       <div key={message._id} className="message flex flex-row">
@@ -73,7 +74,7 @@ class MessageList extends Component {
           className="message-wrapper flex flex-1"
           onClick={() => onClickEdit(message)}
           style={{
-            backgroundColor: highlight ? '#FFB03A' : '',
+            backgroundColor: editing ? '0DCD8E' : (highlight ? '#FFB03A' : ''),
           }}
         >
           <div className="flex flex-1 font-300">{message.startTs.toFixed(2)}</div>
