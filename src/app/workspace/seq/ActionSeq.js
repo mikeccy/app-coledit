@@ -172,7 +172,9 @@ class ActionSeq {
     if (!endInd || startInd === endInd) {
       endInd = startInd + 1;
     }
-    return this._seq.slice(startInd, endInd);
+    return this._seq.filter((value, key) => {
+      return key >= startInd && key <= endInd;
+    });
   }
 
   _addActive(action) {
