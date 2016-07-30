@@ -21,6 +21,13 @@ const messages = (state = List(), action) => {
       } else {
         return state;
       }
+    case 'MESSAGE_REMOVED':
+      const index2 = state.findIndex((value) => value._id === action.message._id);
+      if (index2 >= 0) {
+        return state.delete(index2);
+      } else {
+        return state;
+      }
     default:
       return state;
   }

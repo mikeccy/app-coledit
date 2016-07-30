@@ -252,6 +252,7 @@ class CanvasAudio extends Component {
       }
       return true;
     });
+    this.actionSeq.cleanActions(list);
   }
 
   doStart(ind) {

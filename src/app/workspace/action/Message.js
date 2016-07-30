@@ -35,6 +35,13 @@ export const messageUpdated = (message) => {
   }
 }
 
+export const messageRemoved = (message) => {
+  return {
+    type: 'MESSAGE_REMOVED',
+    message,
+  }
+}
+
 export const editingMessageStart = (message) => {
   return {
     type: 'EDITING_MESSAGE_START',
@@ -79,5 +86,12 @@ export const editingMessageSubmit = () => {
 export const editingMessageEnd = () => {
   return {
     type: 'EDITING_MESSAGE_END',
+  }
+}
+
+export const editingMessageDelete = (message) => {
+  return {
+    type: 'EDITING_MESSAGE_DELETE',
+    message,
   }
 }

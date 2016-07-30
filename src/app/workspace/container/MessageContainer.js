@@ -1,7 +1,13 @@
 import { connect } from 'react-redux';
 import { Message, editingMessageStart } from '../action/Message';
 import MessageList from '../component/MessageList';
-import { app } from '../App';
+import { app, messageService } from '../App';
+import { playerEditSeek } from '../action/Player';
+
+const validateModification = (message) => {
+  const me = app.get('user');
+  return me && me._id === message.userId;
+}
 
 const inputProps = (state) => {
   return {
@@ -14,9 +20,14 @@ const inputProps = (state) => {
 const outputProps = (dispatch) => {
   return {
     onClickEdit: (message) => {
-      const me = app.get('user');
-      if (me && me._id === message.userId) {
+      if (validateModification(message)) {
         dispatch(editingMessageStart(new Message(message)));
+        dispatch(playerEditSeek(message.startTs));
+      }
+    },
+    onClickDelete: (message) => {
+      if (validateModification(message)) {
+        messageService.remove(message._id, message);
       }
     },
   }

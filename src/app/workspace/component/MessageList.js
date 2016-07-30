@@ -60,6 +60,7 @@ class MessageList extends Component {
   _renderMessage({ index, isScrolling }) {
     const {
       onClickEdit,
+      onClickDelete,
     } = this.props;
 
     const message = this.props.messages.get(index);
@@ -74,12 +75,13 @@ class MessageList extends Component {
           className="message-wrapper flex flex-1"
           onClick={() => onClickEdit(message)}
           style={{
-            backgroundColor: editing ? '0DCD8E' : (highlight ? '#FFB03A' : ''),
+            backgroundColor: editing ? '56E2B4' : (highlight ? '#FFC061' : ''),
           }}
         >
           <div className="flex flex-1 font-300">{message.startTs.toFixed(2)}</div>
           <div className="flex flex-1 font-300">{message.endTs.toFixed(2)}</div>
           <div className="flex flex-4 font-600">{message.text}</div>
+          { editing ? <button className="button button-danger font-600 delete" onClick={() => onClickDelete(message)}>删除</button> : null }
         </div>
       </div>
     );

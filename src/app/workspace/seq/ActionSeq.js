@@ -29,6 +29,7 @@ class ActionSeq {
 
     this.reset = this.reset.bind(this);
     this.has = this.has.bind(this);
+    this.cleanActions = this.cleanActions.bind(this);
     this.getAction = this.getAction.bind(this);
     this.addAction = this.addAction.bind(this);
     this.removeAction = this.removeAction.bind(this);
@@ -59,6 +60,13 @@ class ActionSeq {
 
   has(ind) {
     return this._seq.has(ind);
+  }
+
+  cleanActions(list) {
+    if (list && list.size !== this._map.size) {
+      const keys = list.reduce((reduction, value) => reduction.add(value._id), Set());
+      this._map = this._map.filter((value, key) => keys.has(key));
+    }
   }
 
   getAction(key) {

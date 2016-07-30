@@ -62,6 +62,25 @@ a:focus {
   cursor: not-allowed;
 }
 
+.button-danger {
+  padding: 0.6em 1.2em;
+  background: #F85F83;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  transition: background 0.2s;
+}
+
+.button-danger:hover,
+.button-danger:focus {
+  background: #F53864;
+  color: #ffffff;
+}
+
+.button-danger:hover:disabled{
+  cursor: not-allowed;
+}
+
 input:hover:disabled{
   cursor: not-allowed;
 }
@@ -289,4 +308,9 @@ button.playStart {
 }
 
 button.playPause {
+}
+
+button.delete {
+  margin: 5px;
+  font-size: small;
 }
