@@ -4,6 +4,7 @@ import MessageList from '../component/MessageList';
 
 const inputProps = (state) => {
   return {
+    seekPos: state.player.get('seekPos'),
     messages: state.messages,
   }
 }

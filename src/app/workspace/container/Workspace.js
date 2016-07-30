@@ -8,6 +8,7 @@ import UserContainer from './UserContainer';
 import PlayerContainer from './PlayerContainer';
 import MessageContainer from './MessageContainer';
 import ComposeMessageContainer from './ComposeMessageContainer';
+import 'react-virtualized/styles.css';
 
 class Workspace extends Component {
 
@@ -25,11 +26,11 @@ class Workspace extends Component {
 
     messageService.find({
       query: {
-        $sort: { createdAt: -1 },
+        $sort: { startTs: -1 },
         $limit: this.props.limit || 1000
       }
     }).then(
-      (page) => page.data.map((message) => dispatch(messageAdded(message)))
+      (page) => page.data.reverse().map((message) => dispatch(messageAdded(message)))
     );
     messageService.on('created',
       (message) => dispatch(messageAdded(message))
