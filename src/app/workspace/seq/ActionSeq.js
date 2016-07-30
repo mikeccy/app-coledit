@@ -80,7 +80,7 @@ class ActionSeq {
 
   startAction(ind) {
     // clear canvas
-    this._canvas.clear();
+    this._canvas._canvasClear();
     this.reset();
 
     this._map.map((action) => {
@@ -92,7 +92,7 @@ class ActionSeq {
     // populate active action
     const rangeAction = this._getRangeAction(0, ind);
     rangeAction.map((val, key) => {
-      console.log(`Starting seq ${key}`);
+      // console.log(`Starting seq ${key}`);
       this.updateAction(key);
       return true;
     });
@@ -130,8 +130,8 @@ class ActionSeq {
     }
 
     // TODO clear canvas
-    console.log('Clearing');
-    this._canvas.clear();
+    // console.log('Clearing');
+    this._canvas._canvasClear();
 
     // render the active actions
     this._updateActive(ActionState.UPDATE);

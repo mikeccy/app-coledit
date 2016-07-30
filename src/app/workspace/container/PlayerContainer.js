@@ -3,8 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { userService, messageService } from '../App';
 
-import Canvas from '../component/Canvas';
-import AudioContainer from './AudioContainer';
+import CAContainer from './CAContainer';
 import PlayerControlContainer from './PlayerControlContainer';
 
 // TODO refactor to support video
@@ -37,9 +36,8 @@ class PlayerContainer extends Component {
     } = this.props;
 
     return (
-      <main className="player flex flex-column flex-2 clear">
-        <AudioContainer />
-        <Canvas />
+      <main className="player flex flex-column flex-2">
+        <CAContainer />
         <PlayerControlContainer />
       </main>
     );

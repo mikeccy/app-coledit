@@ -29,7 +29,7 @@ class Action {
   }
 
   handle(state) {
-    console.log(`Rendering ${this._key}`);
+    // console.log(`Rendering ${this._key}`);
     this._stateHandler(state, this._key, this._val);
   }
 }

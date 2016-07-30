@@ -1,9 +1,15 @@
-import { connect } from 'react-redux'
-import { playerEditDuration, playerEditedSeek, playerAutoUpdateSeek } from '../action/Player'
-import Audio from '../component/Audio'
+import { connect } from 'react-redux';
+import CanvasAudio from '../component/CanvasAudio';
+import {
+  playerEditDuration,
+  playerEditedSeek,
+  playerAutoUpdateSeek,
+  playerPausePlaying,
+} from '../action/Player';
 
 const inputProps = (state) => {
   return {
+    messages: state.messages,
     playing: state.player.get('playing'),
     seekPos: state.player.get('seekPos'),
     userSeekPos: state.player.get('userSeekPos'),
@@ -21,12 +27,15 @@ const outputProps = (dispatch) => {
     onAudioSeekEdited: () => {
       dispatch(playerEditedSeek());
     },
+    onAudioEnd: () => {
+      dispatch(playerPausePlaying());
+    },
   }
 }
 
-const AudioContainer = connect(
+const CAContainer = connect(
   inputProps,
   outputProps
-)(Audio);
+)(CanvasAudio);
 
-export default AudioContainer;
+export default CAContainer;

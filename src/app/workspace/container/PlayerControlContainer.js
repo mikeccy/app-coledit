@@ -3,6 +3,8 @@ import PlayerControl from '../component/PlayerControl'
 
 const inputProps = (state) => {
   return {
+    seekPos: state.player.get('seekPos'),
+    duration: state.player.get('duration'),
   }
 }
 
