@@ -11,6 +11,7 @@ const message = (state, action) => {
 }
 
 const messages = (state = List(), action) => {
+  console.log(state.size);
   switch (action.type) {
     case 'MESSAGE_ADDED':
       return state.push(message(undefined, action));
