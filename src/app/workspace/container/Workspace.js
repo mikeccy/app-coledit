@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { userService, messageService } from '../App';
 import { userLogin } from '../action/User';
 import { messageAdded, messageUpdated, messageRemoved } from '../action/Message';
+import { miscNewMessagePos } from '../action/Misc';
 import UserContainer from './UserContainer';
 import PlayerContainer from './PlayerContainer';
 import MessageContainer from './MessageContainer';
@@ -36,7 +37,10 @@ class Workspace extends Component {
       (message) => dispatch(messageAdded(message))
     );
     messageService.on('updated',
-      (message) => dispatch(messageUpdated(message))
+      (message) => {
+        dispatch(messageUpdated(message));
+        dispatch(miscNewMessagePos(message.startTs));
+      }
     );
     messageService.on('removed',
       (message) => dispatch(messageRemoved(message))

@@ -38,8 +38,16 @@ class MessageList extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    let newPos = null;
     if (nextProps.seekPos !== this.props.seekPos) {
-      const scrollToIndex = this._getScrollToIndex(nextProps.seekPos);
+      newPos = nextProps.seekPos;
+    }
+    if (nextProps.newMessagePos !== this.props.newMessagePos) {
+      newPos = nextProps.newMessagePos;
+    }
+
+    if (newPos) {
+      const scrollToIndex = this._getScrollToIndex(newPos);
       if (scrollToIndex !== this.state.scrollToIndex) {
         this.setState({
           scrollToIndex: scrollToIndex,

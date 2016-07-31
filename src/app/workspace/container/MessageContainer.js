@@ -11,6 +11,7 @@ const validateModification = (message) => {
 
 const inputProps = (state) => {
   return {
+    newMessagePos: state.misc.newMessagePos,
     seekPos: state.player.get('seekPos'),
     messages: state.messages,
     editingMessageId: state.editingMessage.get('_id'),
