@@ -27,7 +27,6 @@ class Workspace extends Component {
 
     messageService.find({
       query: {
-        $sort: { startTs: -1 },
         $limit: this.props.limit || 1000
       }
     }).then(
